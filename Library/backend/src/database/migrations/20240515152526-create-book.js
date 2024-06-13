@@ -18,8 +18,11 @@ module.exports = {
         type: Sequelize.TEXT,
       },
       cover: {
-        allowNull: false,
         type: Sequelize.BLOB,
+      },
+      categories: {
+        type: Sequelize.ARRAY(Sequelize.STRING),
+        allowNull: false,
       },
       author: {
         allowNull: false,
@@ -47,14 +50,10 @@ module.exports = {
         defaultValue: true,
       },
       created_at: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Date.now(),
       },
       updated_at: {
-        allowNull: false,
         type: Sequelize.DATE,
-        defaultValue: Date.now(),
       },
     });
   },

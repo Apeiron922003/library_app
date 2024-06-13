@@ -18,11 +18,9 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       created_at: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
       updated_at: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
       due_at: {
@@ -31,7 +29,6 @@ module.exports = {
       },
       return_at: {
         type: Sequelize.DATE,
-        defaultValue: null,
       },
     });
   },

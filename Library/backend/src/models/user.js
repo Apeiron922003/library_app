@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       User.hasMany(models.Loan, {
+        foreignKey: "id",
         as: "loans",
       });
     }
@@ -21,13 +22,19 @@ module.exports = (sequelize, DataTypes) => {
         primaryKey: true,
         autoIncrement: true,
       },
-      fullname: {
+      role: {
+        type: DataTypes.STRING(30),
+        allowNull: false,
+        defaultValue: "user",
+      },
+      full_name: {
         allowNull: false,
         type: DataTypes.STRING(30),
       },
       username: {
         allowNull: false,
         type: DataTypes.STRING(30),
+        unique: true,
       },
       password: {
         allowNull: false,
@@ -37,6 +44,9 @@ module.exports = (sequelize, DataTypes) => {
         allowNull: false,
         type: DataTypes.BOOLEAN,
         defaultValue: true,
+      },
+      refresh_token: {
+        type: DataTypes.STRING(),
       },
     },
     {

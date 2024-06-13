@@ -1,0 +1,34 @@
+<% books.forEach((book,index) => { %>
+<div
+  class="w-100 d-flex flex-row gap-2 border border-2 border-danger rounded-3 p-3 my-3"
+>
+  <% if (book.cover) { %> <img width="256px" height="256px"
+  src="data:image/jpeg;base64,<%= Buffer.from(book.cover,
+  'binary').toString("base64") %>" class="rounded-3 p-1 bg-info border border-1
+  border-primary"/> <% } else { %>
+  <div
+    class="rounded-3 bg-black p-3 border border-primary"
+    style="width: 256px; height: 256px"
+  ></div>
+  <% } %>
+  <div class="d-flex gap-2 w-75">
+    <div class="d-flex flex-column w-75">
+      <a class="link-info nav-link" href="<%= `/books/${book.id}` %>"
+        ><b class="fs-3"><%= book.title %></b></a
+      >
+      <p>
+        <u><b>BookId:</b></u> <%= book.id %>
+      </p>
+      <p><i><%= book.description %></i></p>
+    </div>
+    <div class="d-flex flex-column w-25">
+      <p><b>Author:</b> <%= book.author %></p>
+      <p><b>Publisher:</b> <%= book.publisher %></p>
+      <p><b>Release year:</b> <%= book.release_year %></p>
+      <p><b>Total Copies :</b> <%= book.number_of_copies %></p>
+      <p><b>Available Copies:</b> <%= book.copies_available %></p>
+      <a href="#" class="btn btn-primary w-25">Mượn</a>
+    </div>
+  </div>
+</div>
+<% }) %>

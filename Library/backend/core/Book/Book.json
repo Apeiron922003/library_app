@@ -1,0 +1,546 @@
+[
+  {
+    "title": "The Very Hungry Caterpillar",
+    "description": "Follows the progress of a hungry little caterpillar as he eats his way through a varied and very large quantity of food until, full at last, he forms a cocoon around himself and goes to sleep.",
+    "categories": ["Children", "Education", "Nature"],
+    "author": "Eric Carle",
+    "publisher": "Philomel Books",
+    "release_year": 1969
+  },
+  {
+    "title": "Where the Wild Things Are",
+    "description": "Max's wild adventure to the land of the Wild Things, where he is made king.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Maurice Sendak",
+    "publisher": "HarperCollins",
+    "release_year": 1963
+  },
+  {
+    "title": "Goodnight Moon",
+    "description": "A little bunny bids goodnight to all the objects in his room before falling asleep.",
+    "categories": ["Children", "Bedtime Stories", "Classic"],
+    "author": "Margaret Wise Brown",
+    "publisher": "HarperCollins",
+    "release_year": 1947
+  },
+  {
+    "title": "Harry Potter and the Sorcerer's Stone",
+    "description": "Harry Potter's life is changed forever on his eleventh birthday when a giant named Hagrid appears and tells him he is a wizard.",
+    "categories": ["Fantasy", "Adventure", "Children"],
+    "author": "J.K. Rowling",
+    "publisher": "Scholastic",
+    "release_year": 1997
+  },
+  {
+    "title": "Charlotte's Web",
+    "description": "A pig named Wilbur befriends a spider named Charlotte, who tries to save him from being slaughtered.",
+    "categories": ["Children", "Friendship", "Animals"],
+    "author": "E.B. White",
+    "publisher": "HarperCollins",
+    "release_year": 1952
+  },
+  {
+    "title": "The Cat in the Hat",
+    "description": "The Cat in the Hat is a children's book written and illustrated by Dr. Seuss. The story centers on a tall anthropomorphic cat who wears a red and white-striped hat and a red bow tie.",
+    "categories": ["Children", "Classic", "Humor"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1957
+  },
+  {
+    "title": "Green Eggs and Ham",
+    "description": "Sam-I-Am tries to convince the narrator to try green eggs and ham in this classic Dr. Seuss tale.",
+    "categories": ["Children", "Classic", "Humor"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1960
+  },
+  {
+    "title": "The Giving Tree",
+    "description": "A tale of a tree that loves a boy, and the boy's relationship with the tree as he grows older.",
+    "categories": ["Children", "Philosophy", "Classic"],
+    "author": "Shel Silverstein",
+    "publisher": "Harper & Row",
+    "release_year": 1964
+  },
+  {
+    "title": "The Polar Express",
+    "description": "A young boy takes a magical train ride to the North Pole on Christmas Eve.",
+    "categories": ["Children", "Christmas", "Fantasy"],
+    "author": "Chris Van Allsburg",
+    "publisher": "Houghton Mifflin",
+    "release_year": 1985
+  },
+  {
+    "title": "Oh, the Places You'll Go!",
+    "description": "Dr. Seuss's book about life's ups and downs and the adventures you will face.",
+    "categories": ["Children", "Motivational", "Classic"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1990
+  },
+  {
+    "title": "The Tale of Peter Rabbit",
+    "description": "The story of a mischievous rabbit who disobeys his mother's orders and sneaks into Mr. McGregor's garden.",
+    "categories": ["Children", "Animals", "Classic"],
+    "author": "Beatrix Potter",
+    "publisher": "Frederick Warne & Co.",
+    "release_year": 1902
+  },
+  {
+    "title": "Corduroy",
+    "description": "A story about a teddy bear named Corduroy who goes on an adventure in a department store to find his missing button.",
+    "categories": ["Children", "Adventure", "Friendship"],
+    "author": "Don Freeman",
+    "publisher": "Viking Press",
+    "release_year": 1968
+  },
+  {
+    "title": "Guess How Much I Love You",
+    "description": "A sweet story about the bond between parent and child as they express their love for each other.",
+    "categories": ["Children", "Family", "Love"],
+    "author": "Sam McBratney",
+    "publisher": "Candlewick Press",
+    "release_year": 1994
+  },
+  {
+    "title": "The Snowy Day",
+    "description": "A story about a young boy named Peter who experiences the joys of a snowy day.",
+    "categories": ["Children", "Winter", "Classic"],
+    "author": "Ezra Jack Keats",
+    "publisher": "Viking Press",
+    "release_year": 1962
+  },
+  {
+    "title": "Madeline",
+    "description": "A story about a brave little girl named Madeline who lives in a boarding school in Paris.",
+    "categories": ["Children", "Adventure", "Classic"],
+    "author": "Ludwig Bemelmans",
+    "publisher": "Viking Press",
+    "release_year": 1939
+  },
+  {
+    "title": "The Lorax",
+    "description": "The Lorax tells the story of the Once-ler, who causes environmental destruction and the Lorax, who speaks for the trees.",
+    "categories": ["Children", "Environment", "Classic"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1971
+  },
+  {
+    "title": "The Gruffalo",
+    "description": "A mouse tells a tale of a mythical creature called the Gruffalo to scare off his predators, only to encounter the real Gruffalo.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Julia Donaldson",
+    "publisher": "Macmillan Children's Books",
+    "release_year": 1999
+  },
+  {
+    "title": "The Rainbow Fish",
+    "description": "The Rainbow Fish is a story about a beautiful fish who learns to share his most prized possession, his scales.",
+    "categories": ["Children", "Friendship", "Classic"],
+    "author": "Marcus Pfister",
+    "publisher": "North-South Books",
+    "release_year": 1992
+  },
+  {
+    "title": "Winnie-the-Pooh",
+    "description": "Winnie-the-Pooh and his friends in the Hundred Acre Wood go on many adventures.",
+    "categories": ["Children", "Classic", "Animals"],
+    "author": "A. A. Milne",
+    "publisher": "Methuen & Co. Ltd.",
+    "release_year": 1926
+  },
+  {
+    "title": "The Little Engine That Could",
+    "description": "The classic story of the little engine who believes in itself and overcomes a big challenge.",
+    "categories": ["Children", "Motivational", "Classic"],
+    "author": "Watty Piper",
+    "publisher": "Platt & Munk",
+    "release_year": 1930
+  },
+  {
+    "title": "The Story of Ferdinand",
+    "description": "A peaceful bull named Ferdinand who prefers to smell flowers than fight in bullfights.",
+    "categories": ["Children", "Classic", "Animals"],
+    "author": "Munro Leaf",
+    "publisher": "Viking Press",
+    "release_year": 1936
+  },
+  {
+    "title": "If You Give a Mouse a Cookie",
+    "description": "A tale of a boy who gives a mouse a cookie, leading to a series of funny and unexpected events.",
+    "categories": ["Children", "Humor", "Classic"],
+    "author": "Laura Numeroff",
+    "publisher": "HarperCollins",
+    "release_year": 1985
+  },
+  {
+    "title": "Stellaluna",
+    "description": "A baby bat named Stellaluna is separated from her mother and taken in by a family of birds.",
+    "categories": ["Children", "Animals", "Friendship"],
+    "author": "Janell Cannon",
+    "publisher": "Harcourt Brace",
+    "release_year": 1993
+  },
+  {
+    "title": "Alexander and the Terrible, Horrible, No Good, Very Bad Day",
+    "description": "Alexander wakes up with gum in his hair and everything goes wrong from there.",
+    "categories": ["Children", "Humor", "Classic"],
+    "author": "Judith Viorst",
+    "publisher": "Atheneum Books",
+    "release_year": 1972
+  },
+  {
+    "title": "Make Way for Ducklings",
+    "description": "Mr. and Mrs. Mallard look for a place to raise their ducklings in Boston.",
+    "categories": ["Children", "Animals", "Classic"],
+    "author": "Robert McCloskey",
+    "publisher": "Viking Press",
+    "release_year": 1941
+  },
+  {
+    "title": "The Secret Garden",
+    "description": "An orphaned girl discovers a neglected garden and brings it back to life, transforming herself and those around her in the process.",
+    "categories": ["Children", "Classic", "Adventure"],
+    "author": "Frances Hodgson Burnett",
+    "publisher": "Frederick A. Stokes",
+    "release_year": 1911
+  },
+  {
+    "title": "The Wind in the Willows",
+    "description": "A tale of the adventures of Mole, Rat, Badger, and the impulsive Toad.",
+    "categories": ["Children", "Classic", "Animals"],
+    "author": "Kenneth Grahame",
+    "publisher": "Methuen & Co. Ltd.",
+    "release_year": 1908
+  },
+  {
+    "title": "Pippi Longstocking",
+    "description": "The adventures of a spunky, independent girl named Pippi who lives by herself with her horse and monkey.",
+    "categories": ["Children", "Adventure", "Classic"],
+    "author": "Astrid Lindgren",
+    "publisher": "Raben & Sjogren",
+    "release_year": 1945
+  },
+  {
+    "title": "Matilda",
+    "description": "A brilliant little girl with extraordinary powers takes on her school's evil headmistress.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Roald Dahl",
+    "publisher": "Jonathan Cape",
+    "release_year": 1988
+  },
+  {
+    "title": "The BFG",
+    "description": "Sophie befriends a giant who, unlike his peers, doesn't eat children.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Roald Dahl",
+    "publisher": "Jonathan Cape",
+    "release_year": 1982
+  },
+  {
+    "title": "James and the Giant Peach",
+    "description": "A young boy escapes his miserable life and embarks on a fantastical journey inside a giant peach.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Roald Dahl",
+    "publisher": "Alfred A. Knopf",
+    "release_year": 1961
+  },
+  {
+    "title": "Charlie and the Chocolate Factory",
+    "description": "Charlie Bucket finds a golden ticket and wins a tour of Willy Wonka's mysterious chocolate factory.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Roald Dahl",
+    "publisher": "Alfred A. Knopf",
+    "release_year": 1964
+  },
+  {
+    "title": "The Jungle Book",
+    "description": "A collection of stories about Mowgli, a boy raised by wolves in the jungle.",
+    "categories": ["Children", "Adventure", "Classic"],
+    "author": "Rudyard Kipling",
+    "publisher": "Macmillan",
+    "release_year": 1894
+  },
+  {
+    "title": "Anne of Green Gables",
+    "description": "An imaginative, talkative, red-haired orphan is adopted by a brother and sister.",
+    "categories": ["Children", "Classic", "Adventure"],
+    "author": "L. M. Montgomery",
+    "publisher": "L.C. Page & Co.",
+    "release_year": 1908
+  },
+  {
+    "title": "The Little Prince",
+    "description": "A young prince from a distant asteroid recounts his adventures to a stranded pilot in the Sahara Desert.",
+    "categories": ["Children", "Fantasy", "Philosophy"],
+    "author": "Antoine de Saint-Exupéry",
+    "publisher": "Reynal & Hitchcock",
+    "release_year": 1943
+  },
+  {
+    "title": "Alice's Adventures in Wonderland",
+    "description": "A girl named Alice falls through a rabbit hole into a fantasy world populated by peculiar creatures.",
+    "categories": ["Children", "Fantasy", "Classic"],
+    "author": "Lewis Carroll",
+    "publisher": "Macmillan",
+    "release_year": 1865
+  },
+  {
+    "title": "Peter Pan",
+    "description": "The adventures of Peter Pan, the boy who wouldn't grow up, and his friends in Neverland.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "J. M. Barrie",
+    "publisher": "Hodder & Stoughton",
+    "release_year": 1911
+  },
+  {
+    "title": "Holes",
+    "description": "A boy is sent to a brutal camp where he is forced to dig holes all day, uncovering a mystery in the process.",
+    "categories": ["Children", "Adventure", "Mystery"],
+    "author": "Louis Sachar",
+    "publisher": "Farrar, Straus and Giroux",
+    "release_year": 1998
+  },
+  {
+    "title": "Bridge to Terabithia",
+    "description": "Two children create a magical forest kingdom and experience friendship and loss.",
+    "categories": ["Children", "Adventure", "Friendship"],
+    "author": "Katherine Paterson",
+    "publisher": "Thomas Crowell",
+    "release_year": 1977
+  },
+  {
+    "title": "A Wrinkle in Time",
+    "description": "Three children travel through time and space to rescue their father from an evil force.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Madeleine L'Engle",
+    "publisher": "Farrar, Straus and Giroux",
+    "release_year": 1962
+  },
+  {
+    "title": "The Lion, the Witch and the Wardrobe",
+    "description": "Four children enter the magical land of Narnia through a wardrobe and help Aslan defeat the White Witch.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "C. S. Lewis",
+    "publisher": "Geoffrey Bles",
+    "release_year": 1950
+  },
+  {
+    "title": "The Chronicles of Narnia: The Horse and His Boy",
+    "description": "A boy and a talking horse flee from their life of servitude in Calormen and find adventure in Narnia.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "C. S. Lewis",
+    "publisher": "Geoffrey Bles",
+    "release_year": 1954
+  },
+  {
+    "title": "The Chronicles of Narnia: Prince Caspian",
+    "description": "The Pevensie siblings return to Narnia to help Prince Caspian overthrow the tyrant King Miraz.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "C. S. Lewis",
+    "publisher": "Geoffrey Bles",
+    "release_year": 1951
+  },
+  {
+    "title": "The Chronicles of Narnia: The Silver Chair",
+    "description": "Eustace Scrubb and Jill Pole are sent to Narnia to find the missing Prince Rilian.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "C. S. Lewis",
+    "publisher": "Geoffrey Bles",
+    "release_year": 1953
+  },
+  {
+    "title": "The Chronicles of Narnia: The Voyage of the Dawn Treader",
+    "description": "Lucy and Edmund Pevensie return to Narnia with their cousin Eustace and join King Caspian on a sea voyage.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "C. S. Lewis",
+    "publisher": "Geoffrey Bles",
+    "release_year": 1952
+  },
+  {
+    "title": "The Chronicles of Narnia: The Last Battle",
+    "description": "The final book in the Narnia series, where the last battle between good and evil takes place.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "C. S. Lewis",
+    "publisher": "The Bodley Head",
+    "release_year": 1956
+  },
+  {
+    "title": "Charlotte's Web",
+    "description": "A pig named Wilbur befriends a spider named Charlotte, who tries to save him from being slaughtered.",
+    "categories": ["Children", "Friendship", "Animals"],
+    "author": "E.B. White",
+    "publisher": "HarperCollins",
+    "release_year": 1952
+  },
+  {
+    "title": "Stuart Little",
+    "description": "The adventures of a mouse named Stuart who is born into a human family.",
+    "categories": ["Children", "Adventure", "Animals"],
+    "author": "E.B. White",
+    "publisher": "HarperCollins",
+    "release_year": 1945
+  },
+  {
+    "title": "Trumpet of the Swan",
+    "description": "A mute swan named Louis learns to play the trumpet to express himself and win the love of a beautiful swan named Serena.",
+    "categories": ["Children", "Animals", "Adventure"],
+    "author": "E.B. White",
+    "publisher": "HarperCollins",
+    "release_year": 1970
+  },
+  {
+    "title": "The Phantom Tollbooth",
+    "description": "A boy named Milo enters a magical world through a mysterious tollbooth.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Norton Juster",
+    "publisher": "Random House",
+    "release_year": 1961
+  },
+  {
+    "title": "Tuck Everlasting",
+    "description": "A young girl named Winnie meets the Tuck family, who have drunk from a spring that grants eternal life.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Natalie Babbitt",
+    "publisher": "Farrar, Straus and Giroux",
+    "release_year": 1975
+  },
+  {
+    "title": "Ella Enchanted",
+    "description": "A girl named Ella is under a spell that forces her to obey any order given to her.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Gail Carson Levine",
+    "publisher": "HarperCollins",
+    "release_year": 1997
+  },
+  {
+    "title": "The Tale of Despereaux",
+    "description": "A brave mouse named Despereaux rescues a princess and finds his own path in life.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Kate DiCamillo",
+    "publisher": "Candlewick Press",
+    "release_year": 2003
+  },
+  {
+    "title": "Coraline",
+    "description": "A young girl named Coraline discovers an alternate universe behind a hidden door in her new home.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Neil Gaiman",
+    "publisher": "HarperCollins",
+    "release_year": 2002
+  },
+  {
+    "title": "The Graveyard Book",
+    "description": "A boy named Bod is raised by ghosts in a graveyard after his family is murdered.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "Neil Gaiman",
+    "publisher": "HarperCollins",
+    "release_year": 2008
+  },
+  {
+    "title": "Harry Potter and the Philosopher's Stone",
+    "description": "Harry Potter discovers he is a wizard and attends Hogwarts School of Witchcraft and Wizardry.",
+    "categories": ["Children", "Fantasy", "Adventure"],
+    "author": "J.K. Rowling",
+    "publisher": "Bloomsbury",
+    "release_year": 1997
+  },
+  {
+    "title": "Goodnight Moon",
+    "description": "A little rabbit says goodnight to all the familiar things in his room before falling asleep.",
+    "categories": ["Children", "Bedtime", "Classic"],
+    "author": "Margaret Wise Brown",
+    "publisher": "Harper & Brothers",
+    "release_year": 1947
+  },
+  {
+    "title": "Where the Wild Things Are",
+    "description": "A young boy named Max sails away to a land inhabited by wild creatures.",
+    "categories": ["Children", "Adventure", "Imagination"],
+    "author": "Maurice Sendak",
+    "publisher": "Harper & Row",
+    "release_year": 1963
+  },
+  {
+    "title": "The Very Hungry Caterpillar",
+    "description": "Follow the journey of a caterpillar as it eats its way through various foods before transforming into a butterfly.",
+    "categories": ["Children", "Nature", "Learning"],
+    "author": "Eric Carle",
+    "publisher": "Penguin Random House",
+    "release_year": 1969
+  },
+  {
+    "title": "Green Eggs and Ham",
+    "description": "Sam-I-Am tries to convince a skeptic to try green eggs and ham in various locations and circumstances.",
+    "categories": ["Children", "Rhyme", "Humor"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1960
+  },
+  {
+    "title": "The Cat in the Hat",
+    "description": "The mischievous Cat in the Hat visits Sally and her brother on a rainy day, bringing chaos and fun.",
+    "categories": ["Children", "Rhyme", "Adventure"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1957
+  },
+  {
+    "title": "Oh, the Places You'll Go!",
+    "description": "Dr. Seuss's classic book about the journey of life, filled with ups and downs and endless possibilities.",
+    "categories": ["Children", "Inspiration", "Rhyme"],
+    "author": "Dr. Seuss",
+    "publisher": "Random House",
+    "release_year": 1990
+  },
+  {
+    "title": "The Giving Tree",
+    "description": "A touching story about the relationship between a boy and a tree that gives selflessly throughout his life.",
+    "categories": ["Children", "Friendship", "Growth"],
+    "author": "Shel Silverstein",
+    "publisher": "Harper & Row",
+    "release_year": 1964
+  },
+  {
+    "title": "Curious George",
+    "description": "Follow the adventures of Curious George, a mischievous monkey, and his friend, the Man in the Yellow Hat.",
+    "categories": ["Children", "Adventure", "Friendship"],
+    "author": "H.A. Rey and Margret Rey",
+    "publisher": "Houghton Mifflin Harcourt",
+    "release_year": 1941
+  },
+  {
+    "title": "Madeline",
+    "description": "Madeline is the smallest and most adventurous of the twelve little girls who live in a boarding school in Paris.",
+    "categories": ["Children", "Adventure", "Friendship"],
+    "author": "Ludwig Bemelmans",
+    "publisher": "Viking Press",
+    "release_year": 1939
+  },
+  {
+    "title": "The Polar Express",
+    "description": "A magical train ride takes a young boy on a journey to the North Pole to meet Santa Claus.",
+    "categories": ["Children", "Christmas", "Adventure"],
+    "author": "Chris Van Allsburg",
+    "publisher": "Houghton Mifflin Harcourt",
+    "release_year": 1985
+  },
+  {
+    "title": "The Velveteen Rabbit",
+    "description": "A toy rabbit longs to become real through the love of a young boy.",
+    "categories": ["Children", "Friendship", "Imagination"],
+    "author": "Margery Williams",
+    "publisher": "Doubleday",
+    "release_year": 1922
+  },
+  {
+    "title": "Guess How Much I Love You",
+    "description": "Little Nutbrown Hare and Big Nutbrown Hare express their love for each other in this heartwarming story.",
+    "categories": ["Children", "Love", "Family"],
+    "author": "Sam McBratney",
+    "publisher": "Candlewick Press",
+    "release_year": 1994
+  }
+]

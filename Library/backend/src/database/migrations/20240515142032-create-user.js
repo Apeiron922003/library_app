@@ -9,6 +9,10 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER,
       },
+      role: {
+        allowNull: false,
+        type: Sequelize.STRING(30),
+      },
       full_name: {
         allowNull: false,
         type: Sequelize.STRING(30),
@@ -16,6 +20,7 @@ module.exports = {
       username: {
         allowNull: false,
         type: Sequelize.STRING(30),
+        unique: true,
       },
       password: {
         allowNull: false,
@@ -24,15 +29,13 @@ module.exports = {
       created_at: {
         allowNull: false,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
       updated_at: {
-        allowNull: false,
         type: Sequelize.DATE,
       },
       status: {
-        allowNull: false,
         type: Sequelize.BOOLEAN,
-        defaultValue: true,
       },
     });
   },

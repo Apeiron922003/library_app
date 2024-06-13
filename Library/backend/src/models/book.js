@@ -10,6 +10,7 @@ module.exports = (sequelize, DataTypes) => {
     static associate(models) {
       // define association here
       Book.hasMany(models.Loan, {
+        foreignKey: "id",
         as: "loans",
       });
     }
@@ -33,6 +34,10 @@ module.exports = (sequelize, DataTypes) => {
       cover: {
         allowNull: false,
         type: DataTypes.BLOB,
+      },
+      categories: {
+        type: DataTypes.ARRAY(DataTypes.STRING),
+        allowNull: false,
       },
       author: {
         allowNull: false,
