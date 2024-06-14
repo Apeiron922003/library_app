@@ -1,4 +1,4 @@
-import React, { Component, useCallback, useEffect, useState } from "react";
+import React, { useCallback, useRef, useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -7,8 +7,6 @@ import {
   StyleSheet,
   FlatList,
 } from "react-native";
-import Logo from "@/components/library/Logo";
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   Link,
   Redirect,
@@ -18,55 +16,92 @@ import {
 } from "expo-router";
 import BookCard from "@/components/library/BookCard";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { getBooks } from "@/redux/slices/bookSlice";
+import { Book, getBooks } from "@/redux/slices/bookSlice";
 import { toast } from "@/utils/toast";
 import { ScrollView } from "react-native-virtualized-view";
 import LoadingScreen from "@/components/library/LoadingScreen";
-import AsyncStorage from "@react-native-async-storage/async-storage";
-
+import { Searchbar } from "react-native-paper";
+import { debounce } from "lodash";
 const BooksComponent = () => {
-  const { user } = useLocalSearchParams();
+  const firstLoad = useRef(true);
   const { books, status } = useAppSelector((state) => state.book);
   const dispatch = useAppDispatch();
-  const [message, setMessage] = useState("");
-  useFocusEffect(
-    useCallback(() => {
-      if (books?.length == 0 || !books) dispatch(getBooks());
-    }, [])
-  );
+  const [searchQuery, setSearchQuery] = useState("");
+  const [searchResults, setSearchResults] = useState<Book[] | null>(null);
+  // useFocusEffect(
+  //   useCallback(() => {
+  //     const get = async () => {
+  //       if (firstLoad.current) {
+  //         firstLoad.current = false;
+  //         await dispatch(getBooks());
+  //         setSearchResults(books!);
+  //       }
+  //       setSearchResults(books!);
+  //     };
+  //     get();
+  //   }, [books, searchResults])
+  // );
+  useEffect(() => {
+    const fetchBooks = async () => {
+      await dispatch(getBooks());
+    };
+    fetchBooks();
+  }, [dispatch]);
+  useEffect(() => {
+    if (status === "fullfill" && books) {
+      setSearchResults(books);
+    }
+  }, [books, status]);
 
+  const debouncedSearchBooks = debounce((text: any) => {
+    const lowerCaseQuery = text.toLowerCase();
+    const filteredBooks = books!.filter(
+      (book) =>
+        book.title.toLowerCase().includes(lowerCaseQuery) ||
+        book.author.toLowerCase().includes(lowerCaseQuery) ||
+        book.publisher.toLowerCase().includes(lowerCaseQuery)
+    );
+    setSearchResults(filteredBooks);
+  }, 300);
+  const handleSearch = (text: any) => {
+    setSearchQuery(text);
+    debouncedSearchBooks(text);
+  };
   if (status === "pending") {
     return <LoadingScreen />;
   }
   if (status === "reject") {
-    toast.error("Đã có lỗi xảy ra!");
+    toast.error("Please login to continue.");
     return <Redirect href={"/auth/login"} />;
   }
   return (
     <View style={styles.container}>
+      <Searchbar
+        placeholder="Search"
+        onChangeText={handleSearch}
+        value={searchQuery}
+        style={{ width: "100%", margin: 10 }}
+      />
+
       <ScrollView style={{ flex: 1, width: "100%" }}>
         <View style={styles.innerContainer}>
           {status === "fullfill" && (
             <>
-              {message && <Text style={{ color: "red" }}>{message}</Text>}
-              <FlatList
-                style={{ width: "100%" }}
-                data={books}
-                keyExtractor={(item: any) => item.id}
-                renderItem={({ item }) => {
-                  return (
-                    <BookCard
-                      book={item}
-                      onPressDetails={() => {
-                        router.push({
-                          pathname: `/library/detailBook`,
-                          params: { id: item.id },
-                        });
-                      }}
-                    />
-                  );
-                }}
-              />
+              {searchResults?.length == 0 ? (
+                <Text>No book matching.</Text>
+              ) : (
+                <FlatList
+                  style={{ width: "100%" }}
+                  data={searchResults}
+                  keyExtractor={(item: any) => item.id}
+                  initialNumToRender={10}
+                  maxToRenderPerBatch={10}
+                  windowSize={5}
+                  renderItem={({ item }) => {
+                    return <BookCard book={item} />;
+                  }}
+                />
+              )}
             </>
           )}
         </View>
@@ -83,7 +118,7 @@ const styles = StyleSheet.create({
     width: "100%",
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#f5f5f5",
+    backgroundColor: "#ffffff",
   },
   innerContainer: {
     padding: 10,
@@ -96,34 +131,5 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 2,
     elevation: 5,
-  },
-  inputContainer: {
-    marginBottom: 15,
-  },
-  label: {
-    fontSize: 16,
-    fontWeight: "bold",
-    marginBottom: 5,
-    color: "#333",
-  },
-  textInput: {
-    height: 40,
-    borderColor: "#ccc",
-    borderWidth: 1,
-    borderRadius: 5,
-    paddingLeft: 10,
-    backgroundColor: "#fff",
-  },
-  button: {
-    backgroundColor: "#007bff",
-    padding: 10,
-    borderRadius: 5,
-    alignItems: "center",
-    marginTop: 20,
-  },
-  buttonText: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
   },
 });

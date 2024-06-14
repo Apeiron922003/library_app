@@ -6,19 +6,19 @@ import {
   router,
   useLocalSearchParams,
 } from "expo-router";
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { View, Text, Image, StyleSheet, ScrollView, Alert } from "react-native";
 import { Buffer } from "buffer";
 import { toast } from "@/utils/toast";
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
 
-import bookSlice, { Book, getBook } from "@/redux/slices/bookSlice";
+import { Book, getBook } from "@/redux/slices/bookSlice";
 import BorrowModal from "@/components/library/BorrowModal";
 import { Button } from "react-native-paper";
 import LoadingScreen from "@/components/library/LoadingScreen";
 import { useFocusEffect } from "@react-navigation/native";
 function BookDetailsScreen() {
-  let { id } = useLocalSearchParams();
+  let { id, from } = useLocalSearchParams();
   const { books, detail, status } = useAppSelector((state) => state.book);
   const dispatch = useAppDispatch();
   const [book, setBook] = useState<Book>({ cover: "" } as Book);
@@ -85,13 +85,18 @@ function BookDetailsScreen() {
                 </Text>
               </View>
               <View>
-                <Button
-                  onPress={() => {
-                    setShowBorrowModal(true);
-                  }}
-                >
-                  Borrow
-                </Button>
+                {book.copies_available! <= 0 ? (
+                  <Text>No more books available.</Text>
+                ) : (
+                  <Button
+                    onPress={() => {
+                      if (from === "library") setShowBorrowModal(true);
+                    }}
+                    disabled={from === "borrowed"}
+                  >
+                    {from === "library" ? "Borrow" : "Borrowed"}
+                  </Button>
+                )}
               </View>
               {showBorrowModal && (
                 <BorrowModal

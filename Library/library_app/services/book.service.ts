@@ -15,7 +15,6 @@ export const BookService = {
             return data.data
         } catch (error) {
             return Promise.reject(error)
-
         }
-    }
+    },
 }

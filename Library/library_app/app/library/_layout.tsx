@@ -10,10 +10,9 @@ import { Ionicons } from "@expo/vector-icons";
 import Logo from "@/components/library/Logo";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import AsyncStorage from "@react-native-async-storage/async-storage";
-import BackButton from "@/components/library/BackButton";
 import { UserService } from "@/services/user.service";
-import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { toast } from "@/utils/toast";
 
 const Tab = createBottomTabNavigator();
 export default function TabLayout() {
@@ -44,26 +43,35 @@ export default function TabLayout() {
             />
           ),
           headerShown: true,
-          headerTitle: () => <Logo size={24} />,
+          headerTitle: () => <></>,
+          headerLeft: () => (
+            <View style={{ marginLeft: 10 }}>
+              <Logo size={20} />
+            </View>
+          ),
           headerRight: () => (
             <Link
-              href="/auth"
+              href="/auth/login"
               style={{ marginRight: 20 }}
               onPress={async () => {
-                await UserService.logout();
+                if (user) {
+                  try {
+                    await UserService.logout();
+                  } catch (error) {}
+                }
               }}
             >
               {!user ? (
                 <Text
-                  style={{ fontSize: 20, fontWeight: 800, color: "#1588e8" }}
+                  style={{ fontSize: 18, fontWeight: 800, color: "#1588e8" }}
                 >
                   Login
                 </Text>
               ) : (
                 <>
                   <View>
-                    <Text style={{ fontSize: 18 }}>Xin chào,</Text>
-                    <Text style={{ fontSize: 18 }}>{user}</Text>
+                    <Text style={{ fontSize: 14 }}>Xin chào,</Text>
+                    <Text style={{ fontSize: 14 }}>{user}</Text>
                   </View>
                   <MaterialCommunityIcons
                     name="login-variant"
@@ -73,19 +81,6 @@ export default function TabLayout() {
                 </>
               )}
             </Link>
-          ),
-        }}
-      />
-      <Tabs.Screen
-        name="search"
-        options={{
-          title: "Search",
-          tabBarIcon: ({ color, focused }) => (
-            <AntDesign
-              name="search1"
-              size={24}
-              color={focused ? color : "black"}
-            />
           ),
         }}
       />

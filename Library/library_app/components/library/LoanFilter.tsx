@@ -7,83 +7,105 @@ import {
   Portal,
   Dialog,
   TextInput,
+  Checkbox,
+  ToggleButton,
+  Menu,
+  RadioButton,
+  Switch,
 } from "react-native-paper";
-import DateTimePicker from "@react-native-community/datetimepicker";
 //@ts-ignore
 const LoanFilter = ({ applyFilters }) => {
   const [visible, setVisible] = useState(false);
-  const [filterReturned, setFilterReturned] = useState(false);
-  const [filterNotReturned, setFilterNotReturned] = useState(false);
-  const [sortByBorrowDate, setSortByBorrowDate] = useState(false);
-  const [sortByReturnDate, setSortByReturnDate] = useState(false);
-  const [startDate, setStartDate] = useState<Date>(new Date());
-  const [endDate, setEndDate] = useState<Date>(new Date());
-
+  const [returned, setReturned] = useState(false);
+  const [startDate, setStartDate] = useState<"newest" | "oldest" | null>(null);
+  const [endDate, setEndDate] = useState<"newest" | "oldest" | null>("oldest");
+  const [select, setSelection] = useState<"borrowDate" | "dueDate">("dueDate");
+  const [isSwitchOn, setIsSwitchOn] = useState(true);
   const handleFilter = () => {
-    // Xử lý logic lọc ở đây và gọi hàm applyFilters với các tham số cần thiết
-    applyFilters({
-      filterReturned,
-      filterNotReturned,
-      sortByBorrowDate,
-      sortByReturnDate,
-      startDate,
-      endDate,
-    });
-    setVisible(false); // Ẩn dialog khi áp dụng bộ lọc
+    const filter = {
+      returned: !isSwitchOn ? null : returned,
+      select,
+      order: select == "borrowDate" ? startDate : endDate,
+    };
+    applyFilters(filter);
+    setVisible(false);
   };
 
   return (
     <Portal>
       <Dialog visible={visible} onDismiss={() => setVisible(false)}>
-        <Dialog.Title>Loan Filter</Dialog.Title>
+        <Dialog.Title>Filter</Dialog.Title>
         <Dialog.Content>
           <View style={styles.filterRow}>
-            <Text style={styles.filterLabel}>Filter by returned:</Text>
-            <IconButton
-              icon={
-                filterReturned ? "checkbox-marked" : "checkbox-blank-outline"
-              }
-              onPress={() => setFilterReturned(!filterReturned)}
+            <Checkbox
+              status={isSwitchOn ? "checked" : "unchecked"}
+              onPress={() => {
+                setIsSwitchOn(!isSwitchOn);
+              }}
             />
-            <IconButton
-              icon={
-                filterNotReturned ? "checkbox-marked" : "checkbox-blank-outline"
-              }
-              onPress={() => setFilterNotReturned(!filterNotReturned)}
-            />
+            <Text style={styles.filterLabel}>Returned</Text>
+            <Switch value={returned} onValueChange={setReturned} />
           </View>
           <Divider />
           <View style={styles.filterRow}>
-            <Text style={styles.filterLabel}>Sort by:</Text>
-            <IconButton
-              icon={
-                sortByBorrowDate ? "checkbox-marked" : "checkbox-blank-outline"
-              }
-              onPress={() => setSortByBorrowDate(!sortByBorrowDate)}
+            <RadioButton
+              value="startDate"
+              status={select == "borrowDate" ? "checked" : "unchecked"}
+              onPress={() => {
+                setSelection("borrowDate");
+              }}
             />
-            <IconButton
-              icon={
-                sortByReturnDate ? "checkbox-marked" : "checkbox-blank-outline"
-              }
-              onPress={() => setSortByReturnDate(!sortByReturnDate)}
-            />
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <Text style={styles.filterLabel}>Borrow Date</Text>
+              <ToggleButton.Group
+                value={startDate}
+                onValueChange={(value: "newest" | "oldest") => {
+                  setEndDate(null);
+                  setStartDate(value);
+                }}
+              >
+                <ToggleButton icon="arrow-up" value="newest" />
+                <ToggleButton icon="arrow-down" value="oldest" />
+              </ToggleButton.Group>
+            </View>
           </View>
-          <Divider />
-          <Text>Start Date:</Text>
-          <DateTimePicker
-            value={startDate}
-            mode="date"
-            display="spinner" // Chuyển display thành "spinner"
-            onChange={(event, selectedDate) => setStartDate(selectedDate!)}
-          />
-          <Divider />
-          <Text>End Date:</Text>
-          <DateTimePicker
-            value={endDate}
-            mode="date"
-            display="spinner" // Chuyển display thành "spinner"
-            onChange={(event, selectedDate) => setEndDate(selectedDate!)}
-          />
+          <View style={styles.filterRow}>
+            <RadioButton
+              value="endDate"
+              status={select == "dueDate" ? "checked" : "unchecked"}
+              onPress={() => {
+                setSelection("dueDate");
+              }}
+            />
+            <View
+              style={{
+                display: "flex",
+                flexDirection: "row",
+                alignItems: "center",
+                gap: 20,
+              }}
+            >
+              <Text style={styles.filterLabel}>Due Date</Text>
+              <ToggleButton.Group
+                value={endDate}
+                onValueChange={(value: "newest" | "oldest") => {
+                  setStartDate(null);
+                  setEndDate(value);
+                }}
+              >
+                <ToggleButton icon="arrow-up" value="newest" />
+
+                <ToggleButton icon="arrow-down" value="oldest" />
+              </ToggleButton.Group>
+            </View>
+          </View>
         </Dialog.Content>
         <Dialog.Actions>
           <Button onPress={handleFilter}>Apply Filter</Button>
@@ -103,14 +125,16 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     alignItems: "center",
     marginVertical: 5,
+    gap: 20,
   },
   filterLabel: {
     marginRight: 10,
+    width: 80,
   },
   filterButton: {
     position: "absolute",
-    top: 0,
-    right: 0,
+    top: "5%",
+    right: "5%",
   },
 });
 

@@ -2,23 +2,32 @@ import * as React from "react";
 import { Button, Card, Text } from "react-native-paper";
 import { Buffer } from "buffer";
 import { Alert, TouchableOpacity, View } from "react-native";
-import { Loan } from "@/redux/slices/loanSlice";
+import { Loan, returnLoan } from "@/redux/slices/loanSlice";
 import { router } from "expo-router";
+import { useDispatch } from "react-redux";
+import { BookService } from "@/services/book.service";
+import bookSlice from "@/redux/slices/bookSlice";
+import { useAppDispatch } from "@/hooks/useRedux";
 // @ts-ignore
 function BorrowCard(props) {
   const loan = props.loan as Loan;
+  const dispatch = useAppDispatch();
   const detailBook = () => {
     router.push({
       pathname: `/library/detailBook`,
-      params: { id: loan.book_id },
+      params: { id: loan.book_id, from: "borrowed" },
     });
   };
   const returnBook = () => {
-    console.log("Return");
-
     Alert.alert("Return Book", `You want to return ${loan.Book.title}?`, [
       { text: "Cancel", onPress: () => {} },
-      { text: "Ok", onPress() {} },
+      {
+        text: "Ok",
+        onPress: () => {
+          dispatch(returnLoan(loan.id));
+          dispatch(bookSlice.actions.return(loan.book_id));
+        },
+      },
     ]);
   };
   return (
@@ -46,8 +55,14 @@ function BorrowCard(props) {
             <Text style={{ color: "green" }}>{loan.created_at}</Text>
             <Text style={{ color: "red" }}>{loan.due_at}</Text>
           </Card.Content>
-          <Card.Actions>
-            <Button onPress={returnBook}>Return</Button>
+          <Card.Actions style={{ display: "flex", flexDirection: "column" }}>
+            <Button
+              onPress={returnBook}
+              disabled={loan.return_at ? true : false}
+            >
+              {loan.return_at ? "Returned" : "Return"}
+            </Button>
+            <Text>{loan.return_at}</Text>
           </Card.Actions>
         </View>
       </View>

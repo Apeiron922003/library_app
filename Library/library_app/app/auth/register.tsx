@@ -36,10 +36,9 @@ const RegisterComponent = () => {
         await client.post("auth/register", body);
         setMessage("Register Successfully");
         setLoading(false);
-        router.push("/auth/login");
       } catch (error: any) {
         setLoading(false);
-        setMessage(error);
+        setMessage(error.error);
       }
     }
   };

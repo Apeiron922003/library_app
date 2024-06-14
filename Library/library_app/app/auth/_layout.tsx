@@ -1,5 +1,5 @@
-import { Tabs, router } from "expo-router";
-import React from "react";
+import { Tabs, router, useFocusEffect } from "expo-router";
+import React, { useCallback } from "react";
 import {
   DarkTheme,
   DefaultTheme,
@@ -10,13 +10,21 @@ import { AntDesign } from "@expo/vector-icons";
 import { TabBarIcon } from "@/components/navigation/TabBarIcon";
 import { Colors } from "@/constants/Colors";
 import { useColorScheme } from "@/hooks/useColorScheme";
-import BackButton from "@/components/library/BackButton";
 import { Feather } from "@expo/vector-icons";
 import { Pressable } from "react-native";
+import AsyncStorage from "@react-native-async-storage/async-storage";
 
 export default function TabLayout() {
   const colorScheme = useColorScheme();
-
+  useFocusEffect(
+    useCallback(() => {
+      const check = async () => {
+        const user = await AsyncStorage.getItem("user");
+        if (user) router.push("/library");
+      };
+      check();
+    }, [])
+  );
   return (
     <ThemeProvider value={colorScheme === "dark" ? DarkTheme : DefaultTheme}>
       <Tabs

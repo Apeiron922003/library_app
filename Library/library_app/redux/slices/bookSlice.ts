@@ -1,5 +1,7 @@
 import { ThunkAction, UnknownAction, createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 import { BookService } from "@/services/book.service";
+import { toast } from "@/utils/toast";
+import { router } from "expo-router";
 export interface Book {
   id: number,
   title: string,
@@ -33,7 +35,23 @@ export const bookSlice = createSlice({
     get: (state, action) => {
       state.detail = state.books?.find((book) => book.id = action.payload)
     },
-    add: (state, action) => { }
+    add: (state, action) => { },
+    return: (state, action) => {
+      state.books = state.books!.filter((book) => {
+        if (book.id == action.payload) {
+          book.copies_available++;
+        }
+        return book
+      })
+    },
+    borrow: (state, action) => {
+      state.books = state.books!.filter((book) => {
+        if (book.id == action.payload) {
+          book.copies_available--;
+        }
+        return book
+      })
+    }
   },
   extraReducers(builder) {
     builder.addCase(getBooks.pending, (state, action) => {
@@ -60,12 +78,26 @@ export const bookSlice = createSlice({
   },
 });
 
-export const getBooks = createAsyncThunk<Book[], undefined>("book/getAll", async () => {
-  const books = await BookService.getAll();
-  return books
+export const getBooks = createAsyncThunk<Book[], undefined>("book/getAll", async (_, { rejectWithValue }) => {
+  try {
+    const books = await BookService.getAll();
+    return books
+  } catch (error) {
+    toast.error("Netword Error");
+    router.push("/auth/login")
+    return null
+  }
+
 })
 export const getBook = createAsyncThunk<Book, number, {}>("book/get", async (id) => {
-  const book = await BookService.get(id);
-  return book
+  try {
+    const book = await BookService.get(id);
+    return book
+  } catch (error) {
+    toast.error("Netword Error");
+    router.push("/auth/login")
+    return null
+  }
 })
-export default bookSlice.actions
+
+export default bookSlice

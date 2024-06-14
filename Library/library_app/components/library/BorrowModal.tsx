@@ -3,7 +3,9 @@ import React, { useEffect, useState } from "react";
 import { View, StyleSheet, TextInput } from "react-native";
 import { Button, Card, Text, Modal, Portal } from "react-native-paper";
 import { addLoan } from "@/redux/slices/loanSlice";
-import { useAppDispatch } from "@/hooks/useRedux";
+import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
+import moment from "moment";
+import bookSlice from "@/redux/slices/bookSlice";
 
 const BorrowModal = ({ id, isShow, setShow }) => {
   const [borrowDays, setBorrowDays] = useState("");
@@ -12,7 +14,10 @@ const BorrowModal = ({ id, isShow, setShow }) => {
   const dispatch = useAppDispatch();
 
   const handleBorrow = async () => {
+    setMessage("Borrowing...");
+    dispatch(bookSlice.actions.borrow(+id));
     await dispatch(addLoan({ book_id: +id, due_time: +borrowDays }));
+    setMessage("");
     setShow(false);
   };
 
@@ -20,7 +25,13 @@ const BorrowModal = ({ id, isShow, setShow }) => {
     if (isNaN(+borrowDays)) setMessage("Borrow days must be a number!");
     else setMessage("");
   }, [borrowDays]);
-
+  const getDueAtTime = (text) => {
+    setBorrowDays(text);
+    const today = new Date();
+    const due = new Date(today);
+    due.setDate(today.getDate() + +text);
+    setDueDate(moment(due).format("HH:MM DD/MM/YYYY"));
+  };
   if (!isShow) return null;
 
   return (
@@ -38,13 +49,7 @@ const BorrowModal = ({ id, isShow, setShow }) => {
               style={styles.input}
               keyboardType="numeric"
               value={borrowDays}
-              onChangeText={(text) => {
-                setBorrowDays(text);
-                const today = new Date();
-                const due = new Date(today);
-                due.setDate(today.getDate() + +text);
-                setDueDate(due.toDateString());
-              }}
+              onChangeText={getDueAtTime}
               placeholder="How many days?"
             />
             {message && <Text style={{ color: "red" }}>{message}</Text>}

@@ -28,9 +28,7 @@ export const LoanService = {
     },
     return: async (id: number) => {
         try {
-            const { data } = await client.patch(`/loans/${id}`, { return_at: new Date() });
-            const loan = data.data
-            await client.patch(`/books/${loan.book_id}`)
+            const { data } = await client.patch(`/loans/${id}`);
             return data.data
         } catch (error) {
             return Promise.reject(error)

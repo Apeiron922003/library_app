@@ -1,54 +1,92 @@
-import React, { Component, useCallback, useEffect, useState } from "react";
-import { Link, Redirect, router, useFocusEffect } from "expo-router";
-import {
-  View,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  StyleSheet,
-  FlatList,
-  ScrollView,
-} from "react-native";
-import Logo from "@/components/library/Logo";
-import { List } from "postcss/lib/list";
-import BookCard from "@/components/library/BookCard";
-import { client } from "@/utils/client";
-import AsyncStorage from "@react-native-async-storage/async-storage";
+import React, {
+  Component,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from "react";
+import { useFocusEffect, usePathname } from "expo-router";
+import { View, Text, StyleSheet, FlatList } from "react-native";
+import { ScrollView } from "react-native-virtualized-view";
+
 import { useAppDispatch, useAppSelector } from "@/hooks/useRedux";
-import { toast } from "@/utils/toast";
-import { fetchLoans } from "@/redux/slices/loanSlice";
+import { Loan, fetchLoans } from "@/redux/slices/loanSlice";
 import LoadingScreen from "@/components/library/LoadingScreen";
 import BorrowCard from "@/components/library/BorrowCard";
-import BookFilter from "@/components/library/BookFilter";
 import LoanFilter from "@/components/library/LoanFilter";
-
+import moment from "moment";
+interface Filter {
+  returned: boolean | null;
+  select: "borrowDate" | "dueDate";
+  order: "newest" | "oldest";
+}
 const BorrowedComponent = () => {
+  const path = usePathname();
   const { loans, status } = useAppSelector((state) => state.loan);
+  const [searchResults, setSearchResults] = useState<Loan[]>(
+    loans ? loans : []
+  );
   const dispatch = useAppDispatch();
   useFocusEffect(
     useCallback(() => {
-      const getLoans = async () => {
-        const user = await AsyncStorage.getItem("user");
-        if (user) {
-          if (loans?.length == 0 || !loans) dispatch(fetchLoans());
-        } else {
-          toast.error("Login please!");
-        }
+      const get = async () => {
+        await dispatch(fetchLoans());
       };
-      getLoans();
-    }, [])
+      get();
+    }, [dispatch])
   );
+  useEffect(() => {
+    setSearchResults(loans);
+    applyFilter({ returned: false, select: "dueDate", order: "oldest" });
+  }, [loans]);
+
+  const applyFilter = (filter: Filter) => {
+    let filteredData = loans ? [...loans] : [];
+    // Lọc theo trạng thái returned
+    if (filter.returned !== null) {
+      if (filter.returned) {
+        filteredData = filteredData.filter((loan) => loan.return_at);
+      } else {
+        filteredData = filteredData.filter((loan) => !loan.return_at);
+      }
+    }
+    // Sắp xếp theo select và order
+    const getDate = (loan: Loan, dateType: "created_at" | "due_at") =>
+      moment(loan[dateType], "HH:MM DD:MM:YYYY");
+    filteredData.sort((a, b) => {
+      if (filter.select === "borrowDate") {
+        return filter.order === "newest"
+          ? getDate(b, "created_at").diff(getDate(a, "created_at"))
+          : getDate(a, "created_at").diff(getDate(b, "created_at"));
+      } else if (filter.select === "dueDate") {
+        return filter.order === "newest"
+          ? getDate(b, "due_at").diff(getDate(a, "due_at"))
+          : getDate(a, "due_at").diff(getDate(b, "due_at"));
+      }
+      return 0;
+    });
+    setSearchResults(filteredData);
+  };
   if (status === "pending") return <LoadingScreen />;
   return (
     <View style={styles.container}>
       <View style={styles.innerContainer}>
-        {/* Chèn LoanFilter vào đây */}
-        {!loans && <Text>No Borrowed Book</Text>}
+        {path === "/library/borrowed" && (
+          <LoanFilter applyFilters={applyFilter} />
+        )}
+        {!loans?.length && (
+          <Text style={{ textAlign: "center" }}>No Borrowed Book</Text>
+        )}
         {status === "fullfill" && loans && (
           <ScrollView>
-            {loans.map((loan) => (
-              <BorrowCard key={loan.id} loan={loan} />
-            ))}
+            <FlatList
+              style={{ width: "100%" }}
+              data={searchResults}
+              keyExtractor={(item: any) => item.id}
+              renderItem={({ item }) => {
+                return <BorrowCard loan={item} />;
+              }}
+            />
           </ScrollView>
         )}
       </View>
@@ -76,21 +114,4 @@ const styles = StyleSheet.create({
     shadowRadius: 2,
     elevation: 5,
   },
-  row: {
-    flexDirection: "row",
-    height: 80,
-    backgroundColor: "#f1f8ff",
-    borderBottomWidth: 1,
-    borderBottomColor: "#C1C0B9",
-  },
-  cell: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-    textAlign: "center",
-    padding: 10,
-    borderRightWidth: 1,
-    borderRightColor: "#C1C0B9",
-  },
-  headerCell: { backgroundColor: "#f6f8fa", fontWeight: "bold" },
 });

@@ -12,11 +12,11 @@ export const UserService = {
         }
     },
     logout: async () => {
+        await AsyncStorage.removeItem("user")
+        await AsyncStorage.removeItem("access_token")
+        await AsyncStorage.removeItem("refresh_token")
         try {
-            const { data } = await client.post(`/auth/logout`);
-            await AsyncStorage.removeItem("user")
-            await AsyncStorage.removeItem("access_token")
-            await AsyncStorage.removeItem("refresh_token")
+            const { data, request } = await client.post(`/auth/logout`);
             router.push("/auth/login")
             return data.data
         } catch (error: any) {

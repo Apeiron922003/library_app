@@ -5,11 +5,11 @@ import { View, TouchableOpacity } from "react-native";
 import { Link, router } from "expo-router";
 
 // @ts-ignore
-function BookCard({ book, onPressDetails }) {
+function BookCard({ book }) {
   const detailBook = () => {
     router.push({
       pathname: `/library/detailBook`,
-      params: { id: book.id },
+      params: { id: book.id, from: "library" },
     });
   };
   return (
@@ -38,7 +38,7 @@ function BookCard({ book, onPressDetails }) {
             <Text>{book.release_year}</Text>
           </Card.Content>
           <Card.Actions>
-            <Button onPress={onPressDetails}>Detail</Button>
+            <Button onPress={detailBook}>Detail</Button>
           </Card.Actions>
         </View>
       </View>
