@@ -37,11 +37,18 @@ module.exports = {
     const body = req.body;
     if (!body) return res.status(400).json(responseHelper(400));
     try {
-      const isExist = await Loan.findOne({ where: { book_id: body.book_id } });
-      if (isExist)
+      const isExist = await Loan.findOne({
+        where: { book_id: body.book_id, user_id: user.id },
+      });
+      if (isExist && !isExist.return_at)
         return res
           .status(400)
           .json(responseHelper(400, "This book was borrowed."));
+      const book = await Book.findByPk(body.book_id);
+      if (book.copies_available <= 0)
+        return res
+          .status(400)
+          .json(responseHelper(400, "No more book available."));
       // Hạn trả sách
       const currentTime = new Date();
       const dueTime = new Date(currentTime);
@@ -49,6 +56,9 @@ module.exports = {
       body.due_at = dueTime;
       if (user.role === "user") body.user_id = user.id;
       const loan = await Loan.create(body);
+
+      await book.decrement({ copies_available: 1 });
+
       return res.status(201).json(responseHelper(201, loan));
     } catch (error) {
       return res.status(500).json(responseHelper(500, error.message));
@@ -64,12 +74,19 @@ module.exports = {
       const loan = await Loan.findByPk(id);
       if (!loan)
         return res.status(404).json(responseHelper(404, "Loan don't exist."));
-      if (user.id !== loan.user_id || user.role !== "admin")
-        return res
-          .status(403)
-          .json(responseHelper(403, "No update permission."));
+      // if (user.role !== "admin")
+      //   return res
+      //     .status(403)
+      //     .json(responseHelper(403, "No update permission."));
+      // if (user.id !== loan.user_id)
+      //   return res
+      //     .status(403)
+      //     .json(responseHelper(403, "No update permission."));
+      body.return_at = new Date();
       await loan.update(body);
       await loan.save();
+      const book = await Book.findByPk(loan.book_id);
+      await book.increment({ copies_available: 1 });
       return res.status(202).json(responseHelper(202, loan));
     } catch (error) {
       return res.status(500).json(responseHelper(500, error.message));

@@ -63,14 +63,9 @@ module.exports = {
       const user = await User.create(body);
       if (!user) return res.status(400).json(responseHelper(400));
       const { JWT_REFRESH_SECRET, JWT_REFRESH_EXPIRE } = process.env;
-
-      const refresh_token = jwt.sign(
-        { user_id: profile.id },
-        JWT_REFRESH_SECRET,
-        {
-          expiresIn: JWT_REFRESH_EXPIRE,
-        }
-      );
+      const refresh_token = jwt.sign({ user_id: user.id }, JWT_REFRESH_SECRET, {
+        expiresIn: JWT_REFRESH_EXPIRE,
+      });
       await user.update({ refresh_token });
       return res.status(201).json(
         responseHelper(201, {
